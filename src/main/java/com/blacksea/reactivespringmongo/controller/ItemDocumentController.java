@@ -1,7 +1,6 @@
 package com.blacksea.reactivespringmongo.controller;
 
 import com.blacksea.reactivespringmongo.document.ItemDocument;
-import com.blacksea.reactivespringmongo.repository.ItemReactiveRepository;
 import com.blacksea.reactivespringmongo.service.ItemDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,8 +9,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
 
 @RestController
 @RequestMapping("/items")

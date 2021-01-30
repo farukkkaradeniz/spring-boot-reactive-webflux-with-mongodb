@@ -1,7 +1,6 @@
 version: '3.1'
 
 services:
-
   mongo:
     image: mongo
     restart: always
@@ -11,7 +10,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: blacksea
       MONGO_INITDB_ROOT_PASSWORD: blacksea
       MONGO_INITDB_DATABASE: reactiveSpringExample
-
   mongo-express:
     image: mongo-express
     restart: always
@@ -20,3 +18,13 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: blacksea
       ME_CONFIG_MONGODB_ADMINPASSWORD: blacksea
+  app:
+    build: .
+    ports:
+      - "1453:1453"
+    links:
+      - mongo-express
+      - mongo
+    depends_on:
+      - mongo-express
+      - mongo
