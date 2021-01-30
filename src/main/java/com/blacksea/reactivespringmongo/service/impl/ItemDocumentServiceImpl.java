@@ -27,7 +27,7 @@ public class ItemDocumentServiceImpl implements ItemDocumentService {
     public void setupCappedCollection() {
         this.reactiveMongoTemplate.dropCollection(ItemDocument.class)
                 .then(
-                        this.reactiveMongoTemplate.createCollection(ItemDocument.class, CollectionOptions.empty().capped().size(4096).maxDocuments(10000))
+                        this.reactiveMongoTemplate.createCollection(ItemDocument.class, CollectionOptions.empty().capped().size(40960000).maxDocuments(1000000))
                 ).subscribe();
     }
 
@@ -56,9 +56,10 @@ public class ItemDocumentServiceImpl implements ItemDocumentService {
     }
 
     @Override
-    public Mono<ItemDocument> update(ItemDocument itemDocument) {
+    public Mono<ItemDocument> update(String id, ItemDocument itemDocument) {
         log.info("updating item : " + itemDocument);
-        return this.itemReactiveRepository.save(itemDocument);
+        return this.itemReactiveRepository.findById(id)
+                .flatMap((item -> this.itemReactiveRepository.save(itemDocument)));
     }
 
     @Override

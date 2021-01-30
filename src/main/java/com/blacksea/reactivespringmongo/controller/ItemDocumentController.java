@@ -32,9 +32,9 @@ public class ItemDocumentController {
         return this.itemDocumentService.save(itemDocument);
     }
 
-    @PutMapping
-    public Mono<ItemDocument> update(@RequestBody @Validated ItemDocument itemDocument) {
-        return this.itemDocumentService.update(itemDocument);
+    @PutMapping("/{id}")
+    public Mono<ItemDocument> update(@PathVariable String id,@RequestBody @Validated ItemDocument itemDocument) {
+        return this.itemDocumentService.update(id,itemDocument);
     }
 
     @DeleteMapping("/{id}")
