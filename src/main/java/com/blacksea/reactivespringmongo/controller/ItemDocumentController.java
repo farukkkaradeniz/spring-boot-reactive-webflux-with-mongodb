@@ -1,22 +1,25 @@
 package com.blacksea.reactivespringmongo.controller;
 
 import com.blacksea.reactivespringmongo.document.ItemDocument;
+import com.blacksea.reactivespringmongo.repository.ItemReactiveRepository;
 import com.blacksea.reactivespringmongo.service.ItemDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @RestController
 @RequestMapping("/items")
 public class ItemDocumentController {
-
     @Autowired
     private ItemDocumentService itemDocumentService;
 
-    @GetMapping
+    @GetMapping(produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<ItemDocument> getAll() {
         return this.itemDocumentService.getAll();
     }
