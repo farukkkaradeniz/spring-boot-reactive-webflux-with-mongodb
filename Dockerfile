@@ -24,4 +24,4 @@ ENV PORT 1453
 
 EXPOSE 1453
 
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java","-Dspring.profiles.active=docker","-jar","app.jar"]
