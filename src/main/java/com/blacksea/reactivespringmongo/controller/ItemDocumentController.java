@@ -16,7 +16,7 @@ public class ItemDocumentController {
     @Autowired
     private ItemDocumentService itemDocumentService;
 
-    @GetMapping(produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
+    @GetMapping(produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<ItemDocument> getAll() {
         return this.itemDocumentService.getAll();
     }

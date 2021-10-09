@@ -20,8 +20,8 @@ WORKDIR /opt/app
 RUN chgrp -R 0 /opt/app && \
     chmod -R g=u /opt/app
 
-ENV PORT 1453
+ENV PORT 8080
 
-EXPOSE 1453
+EXPOSE 8080
 
 ENTRYPOINT ["java","-Dspring.profiles.active=docker","-jar","app.jar"]
